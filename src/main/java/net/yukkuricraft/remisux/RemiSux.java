@@ -35,7 +35,7 @@ public class RemiSux extends JavaPlugin
     @Override
     @EventHandler(priority = EventPriority.HIGHEST)
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("pong")) { // If the player typed /basic then do the following, note: If you only registered this executor for one command, you don't need this
+        if (cmd.getName().equalsIgnoreCase("pong")) {
             String msg = String.format("%sPong! I hear %s%s", ChatColor.YELLOW, sender.getName(), getRandomInsult());
             broadcast(msg);
             return true;
@@ -55,7 +55,7 @@ public class RemiSux extends JavaPlugin
     }
 
     private static final String[] PONG_INSULTS = {
-        " eats their buggers",
+        " eats their boogers",
         "'s face makes onions cry",
         " is so dumb even Cirno would be amazed",
         " sold their soul to Remi",
@@ -118,7 +118,7 @@ public class RemiSux extends JavaPlugin
         }
 
         if (isVerbose) {
-            broadcast(String.format("%s%s has been YOTE by %s", ChatColor.YELLOW, player.getDisplayName(), sender.getName()));
+            broadcast(String.format("%s%s just YOTE %s!", ChatColor.YELLOW, sender.getName(), player.getDisplayName()));
         }
     }
 

@@ -55,7 +55,7 @@ public class RemiSux extends JavaPlugin
     }
 
     private static final String[] PONG_INSULTS = {
-        " likes little boys",
+        " eats their buggers",
         "'s face makes onions cry",
         " is so dumb even Cirno would be amazed",
         " sold their soul to Remi",
@@ -109,6 +109,7 @@ public class RemiSux extends JavaPlugin
             return;
         }
 
+        // Yeet
         player.sendMessage(String.format("%syaYEET!", ChatColor.YELLOW));
         player.setVelocity(getSemiRandomizedYeetVector());
 
@@ -126,7 +127,6 @@ public class RemiSux extends JavaPlugin
         return Arrays
                 .asList(args)
                 .stream()
-                .map(v -> v.toLowerCase())
                 .anyMatch(v -> v.equalsIgnoreCase(targetArg));
     }
 }

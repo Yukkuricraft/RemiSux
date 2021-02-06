@@ -1,8 +1,6 @@
 package net.yukkuricraft.remisux;
 
-
 import java.util.List;
-
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -10,8 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import net.yukkuricraft.remisux.RemiTabCompleter;
 import net.yukkuricraft.remisux.RemiCommands;
+import net.yukkuricraft.remisux.RemiTabCompleter;
 
 public class RemiSux extends JavaPlugin
 {

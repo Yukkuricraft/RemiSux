@@ -52,7 +52,6 @@ public class RemiCommands
 
     private static final int RAND_VECTOR_CARDINALITY = 3;
     private Vector getSemiRandomizedYeetVector() {
-
         long x = ThreadLocalRandom.current().nextLong(-1 * RAND_VECTOR_CARDINALITY, RAND_VECTOR_CARDINALITY);
         long y = ThreadLocalRandom.current().nextLong(0, 2 * RAND_VECTOR_CARDINALITY);
         long z = ThreadLocalRandom.current().nextLong(-1 * RAND_VECTOR_CARDINALITY, RAND_VECTOR_CARDINALITY);

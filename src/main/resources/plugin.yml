@@ -2,7 +2,7 @@ name: RemiSux
 main: net.yukkuricraft.remisux.RemiSux
 version: 0.0.3
 author: remiscarlet
-api-version: 1.14
+depend: [DiscordSRV]
 commands:
    pong:
       description: Pong

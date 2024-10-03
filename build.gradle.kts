@@ -5,6 +5,7 @@
 plugins {
     `java-library`
     `maven-publish`
+    idea
 }
 
 repositories {
@@ -41,7 +42,7 @@ dependencies {
 group = "net.yukkuricraft.remisux"
 version = "0.0.3"
 description = "Remi Doesn't Know What They're Doing"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 publishing {
     publications.create<MavenPublication>("maven") {
@@ -55,4 +56,11 @@ tasks.withType<JavaCompile>() {
 
 tasks.withType<Javadoc>() {
     options.encoding = "UTF-8"
+}
+
+idea {
+    module {
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
 }

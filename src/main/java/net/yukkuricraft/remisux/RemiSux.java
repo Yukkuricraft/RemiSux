@@ -2,6 +2,7 @@ package net.yukkuricraft.remisux;
 
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
@@ -22,36 +23,11 @@ public class RemiSux extends JavaPlugin implements Listener
 
     @Override
     public void onEnable() {
-        getLogger().info("onEnable has been invoked!");
         this.remiCommands = new RemiCommands(this);
 
         this.getCommand("yeet").setExecutor(this.remiCommands);
         this.getCommand("pong").setExecutor(this.remiCommands);
+
+        Bukkit.getPluginManager().registerEvents(new RemiEnchantmentNerfer(this), this);
     }
-
-    @Override
-    public void onDisable() {
-        getLogger().info("onDisable has been invoked!");
-    }
-
-    @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
-
-    }
-
-    @EventHandler
-    public void onPlayerDropEvent(PlayerDropItemEvent event) {
-
-    }
-
-    @EventHandler
-    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-
-    }
-
-    @EventHandler
-    public void onPlayerItemHeld(PlayerItemHeldEvent event) {
-
-    }
-
 }

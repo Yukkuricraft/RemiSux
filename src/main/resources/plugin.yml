@@ -19,3 +19,6 @@ permissions:
   remisux.yeet.bypass:
     description: Bypass (use the -f flag) to yeet people in survival
     default: op
+  remisux.enchantmentnerfbypass:
+    description: Bypass the automated enchantment level nerfer
+    default: op

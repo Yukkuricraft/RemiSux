@@ -1,8 +1,9 @@
 name: RemiSux
 main: net.yukkuricraft.remisux.RemiSux
-version: 0.0.3
+version: 0.0.4
+api-version: 1.21
 author: remiscarlet
-depend: [DiscordSRV]
+softdepend: [DiscordSRV]
 commands:
    pong:
       description: Pong
@@ -12,12 +13,9 @@ commands:
      usage: /yeet <player>
 
 permissions:
-  remisux.*:
-    description: All remisux perms
-    default: false
   remisux.yeet:
     description: Use the /yeet command
-    default: false
+    default: op
   remisux.yeet.bypass:
     description: Bypass (use the -f flag) to yeet people in survival
     default: op

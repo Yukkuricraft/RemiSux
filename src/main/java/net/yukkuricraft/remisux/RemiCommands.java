@@ -12,13 +12,29 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-public class RemiCommands
+public class RemiCommands implements CommandExecutor
 {
-    public boolean command(CommandSender sender, Command cmd, String label, String[] args) {
+    private final RemiSux plugin;
+    private final Boolean discordSrvInstalled;
+    private final TextChannel discordSrvTextChannel;
+
+    public RemiCommands(RemiSux remiSux) {
+        this.plugin = remiSux;
+        this.discordSrvInstalled = Bukkit.getPluginManager().getPlugin("DiscordSRV") != null;
+        if (this.discordSrvInstalled) {
+            this.discordSrvTextChannel = DiscordSRV.getPlugin().getMainTextChannel();
+        } else {
+            this.discordSrvTextChannel = null;
+        }
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("pong")) {
             String msg = String.format("%sPong! I hear %s%s", ChatColor.YELLOW, sender.getName(), getRandomInsult());
             broadcast(msg);
@@ -32,10 +48,11 @@ public class RemiCommands
     }
 
     private void broadcast(String msg) {
-        TextChannel textChannel = DiscordSRV.getPlugin().getMainTextChannel();
-
         Bukkit.broadcastMessage(msg);
-        DiscordUtil.sendMessage(textChannel, msg);
+
+        if(this.discordSrvInstalled) {
+            DiscordUtil.sendMessage(this.discordSrvTextChannel, msg);
+        }
     }
 
     private static final String[] PONG_INSULTS = {
@@ -70,9 +87,9 @@ public class RemiCommands
 
         Player player = Bukkit.getPlayer(args[0]);
 
-        boolean isForced = (args.length > 1) ? hasArg(args,"-f") : false;
-        boolean isVerbose = (args.length > 1) ? hasArg(args, "-v") : false;
-        boolean useLightning = (args.length > 1) ? hasArg(args, "-l") : false;
+        boolean isForced = args.length > 1 && hasArg(args, "-f");
+        boolean isVerbose = args.length > 1 && hasArg(args, "-v");
+        boolean useLightning = args.length > 1 && hasArg(args, "-l");
 
         if (player == null) {
             sender.sendMessage(String.format("%sThe user %s is not online.", ChatColor.RED, args[0]));
@@ -107,9 +124,7 @@ public class RemiCommands
 
     private boolean hasArg(String[] args, String targetArg) {
         // Yuck.
-        return Arrays
-                .asList(args)
-                .stream()
+        return Arrays.stream(args)
                 .anyMatch(v -> v.equalsIgnoreCase(targetArg));
     }
 }

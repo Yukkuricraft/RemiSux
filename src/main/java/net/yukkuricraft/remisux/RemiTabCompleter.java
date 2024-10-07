@@ -9,25 +9,26 @@ import java.util.stream.Collectors;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-public class RemiTabCompleter
+public class RemiTabCompleter implements TabCompleter
 {
-    public static List<String> tabComplete(final CommandSender sender, final Command cmd, final String commandLabel, final String[] args) {
+    public List<String> onTabComplete(final CommandSender sender, final Command cmd, final String commandLabel, final String[] args) {
         if (commandLabel.equalsIgnoreCase("yeet")) {
             return yeetTabComplete(sender, cmd, commandLabel, args);
         } else {
             return Arrays.asList("Remi", "Is", "Cutest", "2hu");
         }
     }
-    private static List<String> yeetTabComplete(final CommandSender sender, final Command cmd, final String commandLabel, final String[] args) {
+    private List<String> yeetTabComplete(final CommandSender sender, final Command cmd, final String commandLabel, final String[] args) {
         if (args.length < 2) {
             Collection<? extends Player> players = (args.length == 0
                                                       ? Bukkit.getOnlinePlayers()
                                                       : Bukkit.matchPlayer(args[0]));
             return players
                     .stream()
-                    .map(p -> p.getName())
+                    .map(Player::getName)
                     .collect(Collectors.toList());
         }
 

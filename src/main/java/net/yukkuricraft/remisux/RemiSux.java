@@ -6,18 +6,27 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.yukkuricraft.remisux.RemiCommands;
 import net.yukkuricraft.remisux.RemiTabCompleter;
 
-public class RemiSux extends JavaPlugin
+public class RemiSux extends JavaPlugin implements Listener
 {
-    private final RemiCommands RemiCommands = new RemiCommands();
+    private RemiCommands remiCommands;
 
     @Override
     public void onEnable() {
         getLogger().info("onEnable has been invoked!");
+        this.remiCommands = new RemiCommands(this);
+
+        this.getCommand("yeet").setExecutor(this.remiCommands);
+        this.getCommand("pong").setExecutor(this.remiCommands);
     }
 
     @Override
@@ -25,14 +34,24 @@ public class RemiSux extends JavaPlugin
         getLogger().info("onDisable has been invoked!");
     }
 
-    @Override
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        return RemiCommands.command(sender, cmd, label, args);
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent event) {
+
     }
 
-    @Override
-    public List<String> onTabComplete(final CommandSender sender, final Command cmd, final String commandLabel, final String[] args) {
-        return RemiTabCompleter.tabComplete(sender, cmd, commandLabel, args);
+    @EventHandler
+    public void onPlayerDropEvent(PlayerDropItemEvent event) {
+
     }
+
+    @EventHandler
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+
+    }
+
+    @EventHandler
+    public void onPlayerItemHeld(PlayerItemHeldEvent event) {
+
+    }
+
 }
